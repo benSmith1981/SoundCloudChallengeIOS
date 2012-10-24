@@ -10,7 +10,10 @@
 #import <AVFoundation/AVFoundation.h>
 
 @interface SCTTrackListViewController : UITableViewController
-
+{
+    UIImage *image;
+    NSMutableArray *imageInfos;
+}
 @property (nonatomic, strong) NSArray *tracks;
 @property (nonatomic, strong) AVAudioPlayer *player;
 

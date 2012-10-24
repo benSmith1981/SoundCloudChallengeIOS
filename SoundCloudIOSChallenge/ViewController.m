@@ -54,6 +54,7 @@
     };
     
     NSString *resourceURL = @"https://api.soundcloud.com/me/tracks.json";
+    //NSString *resourceURL = @"https://api.soundcloud.com/me/tracks/waveform_url";
     [SCRequest performMethod:SCRequestMethodGET
                   onResource:[NSURL URLWithString:resourceURL]
              usingParameters:nil

@@ -8,7 +8,9 @@
 
 #import "SCTTrackListViewController.h"
 #import "SCUI.h"
-
+#import "ASIHTTPRequest.h"
+#import "ImageInfo.h"
+#import "SCTCustomCell.h"
 @interface SCTTrackListViewController ()
 
 @end
@@ -29,12 +31,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageUpdated:) name:@"imageupdated" object:nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
  
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+}
+
+-(void)viewDidUnload{
+    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"imageupdated" object:nil];
+
 }
 
 - (void)didReceiveMemoryWarning
@@ -59,20 +67,67 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView
-                             dequeueReusableCellWithIdentifier:CellIdentifier];
+//    static NSString *CellIdentifier = @"Cell";
+//    UITableViewCell *cell = [tableView
+//                             dequeueReusableCellWithIdentifier:CellIdentifier];
+    
+    static NSString *STCCustomCellID = @"STCCell";
+    SCTCustomCell *cell = (SCTCustomCell *) [tableView dequeueReusableCellWithIdentifier:STCCustomCellID];
+    
+//    if (cell == nil) {
+//        cell = [[UITableViewCell alloc]
+//                initWithStyle:UITableViewCellStyleDefault
+//                reuseIdentifier:cell];
+//    }
     
     if (cell == nil) {
-        cell = [[UITableViewCell alloc]
-                initWithStyle:UITableViewCellStyleDefault
-                reuseIdentifier:CellIdentifier];
+		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"listCell"
+                                                     owner:self options:nil];
+		cell = [nib objectAtIndex:0];
     }
     
     NSDictionary *track = [self.tracks objectAtIndex:indexPath.row];
-    cell.textLabel.text = [track objectForKey:@"title"];
+    ImageInfo *info = [[ImageInfo alloc] initWithSourceURL:[track objectForKey:@"waveform_url"]];
+    [imageInfos addObject:info];
+    
+    cell.title.text = [track objectForKey:@"title"];
+    cell.creationDate.text = [NSString stringWithFormat:@"Year:%@ Month:%@ Day:%@",[track objectForKey:@"release_year"],[track objectForKey:@"release_month"],[track objectForKey:@"release_day"]];
+
     
     return cell;
+}
+
+- (void)getImage:(NSURL *)sourceURL  {
+    
+    NSLog(@"Getting %@...", sourceURL);
+    
+    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:sourceURL];
+    [request setCompletionBlock:^{
+        NSLog(@"Image downloaded.");
+        NSData *data = [request responseData];
+        image = [[UIImage alloc] initWithData:data];
+        [[NSNotificationCenter defaultCenter] postNotificationName:@"imageupdated" object:self];
+
+    }];
+    [request setFailedBlock:^{
+        NSError *error = [request error];
+        NSLog(@"Error downloading image: %@", error.localizedDescription);
+    }];
+    [request startAsynchronous];
+}
+
+
+// Add new method
+- (void)imageUpdated:(NSNotification *)notif {
+    
+    ImageInfo *info = [notif object];
+    int row = [imageInfos indexOfObject:info];
+    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
+    
+    NSLog(@"Image for row %d updated!", row);
+    
+    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
+    
 }
 
 /*
