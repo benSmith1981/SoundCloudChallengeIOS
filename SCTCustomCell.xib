@@ -80,8 +80,10 @@
 								</object>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
-								<object class="IBUIFontDescription" key="IBUIFontDescription" id="344801615">
-									<int key="type">1</int>
+								<object class="IBUIFontDescription" key="IBUIFontDescription" id="453774781">
+									<string key="name">Helvetica</string>
+									<string key="family">Helvetica</string>
+									<int key="traits">0</int>
 									<double key="pointSize">17</double>
 								</object>
 								<object class="NSFont" key="IBUIFont" id="1063610980">
@@ -109,7 +111,7 @@
 								<reference key="IBUIHighlightedColor" ref="816604351"/>
 								<int key="IBUIBaselineAdjustment">0</int>
 								<int key="IBUITextAlignment">1</int>
-								<reference key="IBUIFontDescription" ref="344801615"/>
+								<reference key="IBUIFontDescription" ref="453774781"/>
 								<reference key="IBUIFont" ref="1063610980"/>
 								<bool key="IBUIAdjustsFontSizeToFit">NO</bool>
 							</object>

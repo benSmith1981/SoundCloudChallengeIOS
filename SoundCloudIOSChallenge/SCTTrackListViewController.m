@@ -8,9 +8,11 @@
 
 #import "SCTTrackListViewController.h"
 #import "SCUI.h"
-#import "ASIHTTPRequest.h"
-#import "ImageInfo.h"
 #import "SCTCustomCell.h"
+#import "UIImageView+ImageDisplay.h"
+#import "UIColor+HEXString.h"
+
+
 @interface SCTTrackListViewController ()
 
 @end
@@ -31,7 +33,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageUpdated:) name:@"imageupdated" object:nil];
+    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageUpdated:) name:@"imageupdated" object:nil];
 
     // Uncomment the following line to preserve selection between presentations.
     // self.clearsSelectionOnViewWillAppear = NO;
@@ -40,10 +42,10 @@
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
--(void)viewDidUnload{
-    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"imageupdated" object:nil];
-
-}
+//-(void)viewDidUnload{
+//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"imageupdated" object:nil];
+//
+//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -52,6 +54,11 @@
 }
 
 #pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 88;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -67,68 +74,66 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-//    static NSString *CellIdentifier = @"Cell";
-//    UITableViewCell *cell = [tableView
-//                             dequeueReusableCellWithIdentifier:CellIdentifier];
-    
-    static NSString *STCCustomCellID = @"STCCell";
-    SCTCustomCell *cell = (SCTCustomCell *) [tableView dequeueReusableCellWithIdentifier:STCCustomCellID];
-    
-//    if (cell == nil) {
-//        cell = [[UITableViewCell alloc]
-//                initWithStyle:UITableViewCellStyleDefault
-//                reuseIdentifier:cell];
-//    }
+    static NSString *SCTCustomCellID = @"SCTCustomCell";
+    SCTCustomCell *cell = (SCTCustomCell*)[tableView dequeueReusableCellWithIdentifier:SCTCustomCellID];
     
     if (cell == nil) {
-		NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"listCell"
-                                                     owner:self options:nil];
-		cell = [nib objectAtIndex:0];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SCTCustomCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+
+        //cell = [[SCTCustomCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:SCTCustomCellID];
+        //		cell = [nib objectAtIndex:0];
     }
     
     NSDictionary *track = [self.tracks objectAtIndex:indexPath.row];
-    ImageInfo *info = [[ImageInfo alloc] initWithSourceURL:[track objectForKey:@"waveform_url"]];
-    [imageInfos addObject:info];
     
-    cell.title.text = [track objectForKey:@"title"];
-    cell.creationDate.text = [NSString stringWithFormat:@"Year:%@ Month:%@ Day:%@",[track objectForKey:@"release_year"],[track objectForKey:@"release_month"],[track objectForKey:@"release_day"]];
+    //Set background colour of waveform to that of SoundClouds, taken from website
+    [cell.waveForm setBackgroundColor:[UIColor colorWithHexString:@"#ff6600"]];
+    [cell.waveForm displayPlaceHolderImage:[UIImage imageNamed:@"placeHolder.png"] FromURLString:[track objectForKey:@"waveform_url"]];
 
+    //set colour and text of font to that of SoundClouds, taken from website
+    [cell.title setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:15]];
+    cell.title.textColor = [UIColor colorWithHexString:@"#0066cc"];
+    [cell.title setText:[track objectForKey:@"title"]];
+    
+    cell.creationDate.textColor = [UIColor colorWithHexString:@"#0066cc"];
+    [cell.creationDate setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:15]];
+    cell.creationDate.text = [NSString stringWithFormat:@"Year:%@ Month:%@ Day:%@",[track objectForKey:@"release_year"],[track objectForKey:@"release_month"],[track objectForKey:@"release_day"]];
     
     return cell;
 }
 
-- (void)getImage:(NSURL *)sourceURL  {
-    
-    NSLog(@"Getting %@...", sourceURL);
-    
-    __block ASIHTTPRequest *request = [ASIHTTPRequest requestWithURL:sourceURL];
-    [request setCompletionBlock:^{
-        NSLog(@"Image downloaded.");
-        NSData *data = [request responseData];
-        image = [[UIImage alloc] initWithData:data];
-        [[NSNotificationCenter defaultCenter] postNotificationName:@"imageupdated" object:self];
 
-    }];
-    [request setFailedBlock:^{
-        NSError *error = [request error];
-        NSLog(@"Error downloading image: %@", error.localizedDescription);
-    }];
-    [request startAsynchronous];
+-(void)launchRemoteUrlForTrack:(NSDictionary*)track
+{
+    NSString *trackID = [NSString stringWithFormat:@"%@",[track objectForKey:@"id"]];
+    NSString *permaLink = [track objectForKey:@"permalink_url"];
+    
+    NSString* params = @"tracks:";
+    [params stringByAppendingString:trackID];
+    
+    NSString* URI = @"soundcloud://"; // Text sent through url.
+    
+    UIApplication *ourApplication = [UIApplication sharedApplication];
+    NSString *URLEncodedText = [params stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
+    NSLog(@"[URI stringByAppendingString:trackID] %@",[URI stringByAppendingString:URLEncodedText]);
+    NSURL *ourURL = [NSURL URLWithString:[URI stringByAppendingString:URLEncodedText]];
+    
+    if ([ourApplication canOpenURL:ourURL]) {
+        [ourApplication openURL:ourURL];
+    }
+    else {
+        [[UIApplication sharedApplication] openURL:[NSURL URLWithString:permaLink]];
+//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"App Not Found"
+//                                                            message:[NSString stringWithFormat:@"%@ is not installed. \nWhould you like to install it?", trackID]
+//                                                           delegate:nil
+//                                                  cancelButtonTitle:@"Not now"
+//                                                  otherButtonTitles:@"OK", nil];
+//        [alertView show];
+    }
 }
 
 
-// Add new method
-- (void)imageUpdated:(NSNotification *)notif {
-    
-    ImageInfo *info = [notif object];
-    int row = [imageInfos indexOfObject:info];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:row inSection:0];
-    
-    NSLog(@"Image for row %d updated!", row);
-    
-    [self.tableView reloadRowsAtIndexPaths:[NSArray arrayWithObject:indexPath] withRowAnimation:UITableViewRowAnimationNone];
-    
-}
 
 /*
 // Override to support conditional editing of the table view.
@@ -174,21 +179,25 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
     NSDictionary *track = [self.tracks objectAtIndex:indexPath.row];
-    NSString *streamURL = [track objectForKey:@"stream_url"];
+    NSLog(@"[track objectForKey:@\"id\"]%@",[track objectForKey:@"id"]);
     
-    SCAccount *account = [SCSoundCloud account];
+    [self launchRemoteUrlForTrack:track];
     
-    [SCRequest performMethod:SCRequestMethodGET
-                  onResource:[NSURL URLWithString:streamURL]
-             usingParameters:nil
-                 withAccount:account
-      sendingProgressHandler:nil
-             responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-                 NSError *playerError;
-                 player = [[AVAudioPlayer alloc] initWithData:data error:&playerError];
-                 [player prepareToPlay];
-                 [player play];
-             }];
+//    NSString *streamURL = [track objectForKey:@"stream_url"];
+//    
+//    SCAccount *account = [SCSoundCloud account];
+//    
+//    [SCRequest performMethod:SCRequestMethodGET
+//                  onResource:[NSURL URLWithString:streamURL]
+//             usingParameters:nil
+//                 withAccount:account
+//      sendingProgressHandler:nil
+//             responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
+//                 NSError *playerError;
+//                 player = [[AVAudioPlayer alloc] initWithData:data error:&playerError];
+//                 [player prepareToPlay];
+//                 [player play];
+//             }];
 }
 
 @end

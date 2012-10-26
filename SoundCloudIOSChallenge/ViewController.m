@@ -42,6 +42,8 @@
                                              JSONObjectWithData:data
                                              options:0
                                              error:&jsonError];
+        
+        NSDictionary *collection = [[NSDictionary alloc]initWithDictionary:(NSDictionary*)jsonResponse];
         if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
             SCTTrackListViewController *trackListVC;
             trackListVC = [[SCTTrackListViewController alloc]
@@ -53,8 +55,8 @@
         }
     };
     
-    NSString *resourceURL = @"https://api.soundcloud.com/me/tracks.json";
-    //NSString *resourceURL = @"https://api.soundcloud.com/me/tracks/waveform_url";
+    //NSString *resourceURL = @"https://api.soundcloud.com/me/tracks.json";
+    NSString *resourceURL = @"https://api.soundcloud.com/me/activities/tracks/affiliated.json";
     [SCRequest performMethod:SCRequestMethodGET
                   onResource:[NSURL URLWithString:resourceURL]
              usingParameters:nil
@@ -85,7 +87,7 @@
                            shareViewControllerWithFileURL:trackURL
                            completionHandler:handler];
     [shareViewController setTitle:@"Funny sounds"];
-    [shareViewController setPrivate:YES];
+    [shareViewController setPrivate:YES]; 
     [self presentModalViewController:shareViewController animated:YES];
 }
 

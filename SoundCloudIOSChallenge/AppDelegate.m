@@ -21,9 +21,22 @@
     } else {
         self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
     }
+    [self logInstalledFonts];
     self.window.rootViewController = self.viewController;
     [self.window makeKeyAndVisible];
     return YES;
+}
+
+- (void)logInstalledFonts
+{
+    for (NSString *familyName in [UIFont familyNames])
+    {
+        NSLog(@"Font Family --> %@", familyName);
+        for (NSString *fontName in [UIFont fontNamesForFamilyName:familyName])
+        {
+            NSLog(@"\tFont Name: %@", fontName);
+        }
+    }
 }
 
 + (void) initialize
