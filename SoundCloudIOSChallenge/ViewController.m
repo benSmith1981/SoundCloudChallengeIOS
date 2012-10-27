@@ -38,18 +38,35 @@
     SCRequestResponseHandler handler;
     handler = ^(NSURLResponse *response, NSData *data, NSError *error) {
         NSError *jsonError = nil;
-        NSJSONSerialization *jsonResponse = [NSJSONSerialization
+        NSArray *arrayOfCollections;
+
+        //check if we get any data back
+        if (data != nil) {
+            NSJSONSerialization *jsonResponse = [NSJSONSerialization
                                              JSONObjectWithData:data
                                              options:0
                                              error:&jsonError];
+            NSDictionary *collection = [[NSDictionary alloc]initWithDictionary:(NSDictionary*)jsonResponse];
+            arrayOfCollections = [collection objectForKey:@"collection"];
+        }
+        //if not warn the user problem connecting
+        else{
+            UIAlertView *problemConnecting = [[UIAlertView alloc]
+                                          initWithTitle:@"Problem Connecting"
+                                          message:@"No data could be retrieved, there could be a problem with your connection, try again later"
+                                          delegate:nil
+                                          cancelButtonTitle:nil
+                                          otherButtonTitles:@"OK", nil];
+            
+            [problemConnecting show];
+        }
         
-        NSDictionary *collection = [[NSDictionary alloc]initWithDictionary:(NSDictionary*)jsonResponse];
-        if (!jsonError && [jsonResponse isKindOfClass:[NSArray class]]) {
+        if (!jsonError && [arrayOfCollections isKindOfClass:[NSArray class]]) {
             SCTTrackListViewController *trackListVC;
             trackListVC = [[SCTTrackListViewController alloc]
                            initWithNibName:@"SCTTrackListViewController"
                            bundle:nil];
-            trackListVC.tracks = (NSArray *)jsonResponse;
+            trackListVC.tracks = arrayOfCollections;
             [self presentViewController:trackListVC
                                animated:YES completion:nil];
         }

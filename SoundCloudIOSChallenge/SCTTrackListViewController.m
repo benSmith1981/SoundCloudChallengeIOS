@@ -18,8 +18,8 @@
 @end
 
 @implementation SCTTrackListViewController
-@synthesize tracks;
-@synthesize player;
+@synthesize tracks = _tracks;
+@synthesize player = _player;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -33,19 +33,9 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    //[[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(imageUpdated:) name:@"imageupdated" object:nil];
 
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
-//-(void)viewDidUnload{
-//    [[NSNotificationCenter defaultCenter] removeObserver:self name:@"imageupdated" object:nil];
-//
-//}
 
 - (void)didReceiveMemoryWarning
 {
@@ -87,18 +77,19 @@
     
     NSDictionary *track = [self.tracks objectAtIndex:indexPath.row];
     
+    origin = [track objectForKey:@"origin"];
     //Set background colour of waveform to that of SoundClouds, taken from website
     [cell.waveForm setBackgroundColor:[UIColor colorWithHexString:@"#ff6600"]];
-    [cell.waveForm displayPlaceHolderImage:[UIImage imageNamed:@"placeHolder.png"] FromURLString:[track objectForKey:@"waveform_url"]];
+    [cell.waveForm displayPlaceHolderImage:[UIImage imageNamed:@"placeHolder.png"] FromURLString:[origin objectForKey:@"waveform_url"]];
 
     //set colour and text of font to that of SoundClouds, taken from website
     [cell.title setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:15]];
     cell.title.textColor = [UIColor colorWithHexString:@"#0066cc"];
-    [cell.title setText:[track objectForKey:@"title"]];
+    [cell.title setText:[origin objectForKey:@"title"]];
     
     cell.creationDate.textColor = [UIColor colorWithHexString:@"#0066cc"];
     [cell.creationDate setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:15]];
-    cell.creationDate.text = [NSString stringWithFormat:@"Year:%@ Month:%@ Day:%@",[track objectForKey:@"release_year"],[track objectForKey:@"release_month"],[track objectForKey:@"release_day"]];
+    cell.creationDate.text = [NSString stringWithFormat:@"Year:%@ Month:%@ Day:%@",[origin objectForKey:@"release_year"],[origin objectForKey:@"release_month"],[origin objectForKey:@"release_day"]];
     
     return cell;
 }
@@ -181,7 +172,7 @@
     NSDictionary *track = [self.tracks objectAtIndex:indexPath.row];
     NSLog(@"[track objectForKey:@\"id\"]%@",[track objectForKey:@"id"]);
     
-    [self launchRemoteUrlForTrack:track];
+    [self launchRemoteUrlForTrack:origin];
     
 //    NSString *streamURL = [track objectForKey:@"stream_url"];
 //    

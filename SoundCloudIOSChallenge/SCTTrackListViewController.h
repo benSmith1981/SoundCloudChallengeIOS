@@ -13,6 +13,7 @@
 {
     UIImage *image;
     NSMutableArray *imageInfos;
+    NSDictionary *origin;
 }
 @property (nonatomic, strong) NSArray *tracks;
 @property (nonatomic, strong) AVAudioPlayer *player;
