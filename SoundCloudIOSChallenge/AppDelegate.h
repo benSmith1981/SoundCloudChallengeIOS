@@ -12,10 +12,12 @@
 
 @class ViewController,SCTTrackListViewController;
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>
+@interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
 
 //@property (strong, nonatomic) ViewController *viewController;
+@property (strong, nonatomic) UITabBarController *tabBarController;
+
 @property (strong, nonatomic) SCTTrackListViewController *trackList;
 @end

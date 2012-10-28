@@ -167,7 +167,7 @@
     cell.creationDate.textColor = [UIColor colorWithHexString:@"#0066cc"];
     [cell.creationDate setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:15]];
     
-    if([origin objectForKey:@"release_year"])//== NULL || [origin objectForKey:@"release_month"] == NULL || [origin objectForKey:@"release_day"] ==NULL)
+    if([origin objectForKey:@"release_year"] || [origin objectForKey:@"release_month"] || [origin objectForKey:@"release_day"])
     {
         cell.creationDate.text = @"No release date specified";
     }

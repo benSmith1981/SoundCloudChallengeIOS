@@ -45,6 +45,8 @@
 		90CCBA181638030C009F7822 /* SCTTrackListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCBA1616380309009F7822 /* SCTTrackListViewController.m */; };
 		90CCBA191638030C009F7822 /* SCTTrackListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CCBA171638030B009F7822 /* SCTTrackListViewController.xib */; };
 		B538F43D163C273800A95522 /* SoundCloudController.m in Sources */ = {isa = PBXBuildFile; fileRef = B538F43C163C273800A95522 /* SoundCloudController.m */; };
+		B53BBA1B163DD1FC00F3ECF8 /* SCTLikeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B53BBA19163DD1FC00F3ECF8 /* SCTLikeListViewController.m */; };
+		B53BBA1C163DD1FC00F3ECF8 /* SCTLikeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA1A163DD1FC00F3ECF8 /* SCTLikeListViewController.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -196,6 +198,9 @@
 		90CCBA171638030B009F7822 /* SCTTrackListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCTTrackListViewController.xib; sourceTree = "<group>"; };
 		B538F43B163C273800A95522 /* SoundCloudController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudController.h; sourceTree = "<group>"; };
 		B538F43C163C273800A95522 /* SoundCloudController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudController.m; sourceTree = "<group>"; };
+		B53BBA18163DD1FC00F3ECF8 /* SCTLikeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTLikeListViewController.h; sourceTree = "<group>"; };
+		B53BBA19163DD1FC00F3ECF8 /* SCTLikeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTLikeListViewController.m; sourceTree = "<group>"; };
+		B53BBA1A163DD1FC00F3ECF8 /* SCTLikeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCTLikeListViewController.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,6 +283,8 @@
 				90CCB9311636E80C009F7822 /* AppDelegate.m */,
 				90CCBA1516380308009F7822 /* SCTTrackListViewController.h */,
 				90CCBA1616380309009F7822 /* SCTTrackListViewController.m */,
+				B53BBA18163DD1FC00F3ECF8 /* SCTLikeListViewController.h */,
+				B53BBA19163DD1FC00F3ECF8 /* SCTLikeListViewController.m */,
 				B538F43B163C273800A95522 /* SoundCloudController.h */,
 				B538F43C163C273800A95522 /* SoundCloudController.m */,
 				908639AF163970BD003DFB45 /* UIColor+HEXString.h */,
@@ -286,6 +293,7 @@
 				9091F24E16394CBA00F621BB /* UIImageView+ImageDisplay.m */,
 				9091F193163891E700F621BB /* SCTCustomCell.h */,
 				9091F194163891E700F621BB /* SCTCustomCell.m */,
+				B53BBA1A163DD1FC00F3ECF8 /* SCTLikeListViewController.xib */,
 				9091F1981638923900F621BB /* SCTCustomCell.xib */,
 				90CCBA171638030B009F7822 /* SCTTrackListViewController.xib */,
 				90CCB93C1636E80C009F7822 /* ViewController_iPhone.xib */,
@@ -513,6 +521,7 @@
 				9091F1991638923900F621BB /* SCTCustomCell.xib in Resources */,
 				9091F27C1639552F00F621BB /* placeHolder.png in Resources */,
 				908639AE16396E34003DFB45 /* LucidaGrande.ttf in Resources */,
+				B53BBA1C163DD1FC00F3ECF8 /* SCTLikeListViewController.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +539,7 @@
 				9091F24F16394CBA00F621BB /* UIImageView+ImageDisplay.m in Sources */,
 				908639B1163970BD003DFB45 /* UIColor+HEXString.m in Sources */,
 				B538F43D163C273800A95522 /* SoundCloudController.m in Sources */,
+				B53BBA1B163DD1FC00F3ECF8 /* SCTLikeListViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
