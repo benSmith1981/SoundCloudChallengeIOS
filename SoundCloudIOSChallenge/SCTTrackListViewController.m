@@ -12,20 +12,20 @@
 #import "UIImageView+ImageDisplay.h"
 #import "UIColor+HEXString.h"
 
-
 @interface SCTTrackListViewController ()
 
 @end
 
 @implementation SCTTrackListViewController
 @synthesize tracks = _tracks;
-@synthesize player = _player;
+@synthesize loginButton = _loginButton;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
     self = [super initWithStyle:style];
     if (self) {
         // Custom initialization
+
     }
     return self;
 }
@@ -34,13 +34,89 @@
 {
     [super viewDidLoad];
 
+
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    soundCloudController = [[SoundCloudController alloc]init];
+    soundCloudController.delegate = self;
+    
+    SCAccount *account = [SCSoundCloud account];
+    //check if the user has already got an open session (previous login)
+    if (account == nil) {
+        //if not login
+        [soundCloudController login];
+    }
+    else
+    {
+        //if they have then change button title and get the tracks
+        _loginButton.title = @"Logout";
+        [soundCloudController getTracks];
+    }
+    
+}
+
+- (void)viewDidUnload {
+    [self setLoginButton:nil];
+    [super viewDidUnload];
+}
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+#pragma mark - SoundCloudControllerDelegate
+- (void)loginDidFail{
+    _loginButton.title = @"Login";
+
+}
+-(void)loginSuccess{
+    _loginButton.title = @"Logout";
+    [soundCloudController getTracks];
+}
+
+- (void)loginWithModalView:(SCLoginViewController*)loginView{
+    [self presentModalViewController:loginView animated:YES];
+}
+
+- (void)tracksReceived:(NSArray *)arrayOfCollections{
+    //populate _tracks with data
+    _tracks = [[NSArray alloc]initWithArray:arrayOfCollections];
+    //reload table
+    [self.tableView reloadData];
+}
+
+- (void)tracksFailedToReceive{
+    UIAlertView *problemConnecting = [[UIAlertView alloc]
+                                      initWithTitle:@"Problem Connecting"
+                                      message:@"No data could be retrieved, there could be a problem with your connection, try again later"
+                                      delegate:nil
+                                      cancelButtonTitle:nil
+                                      otherButtonTitles:@"OK", nil];
+    
+    [problemConnecting show];
+}
+
+#pragma mark - Login button action
+
+- (IBAction)loginButton:(id)sender {
+    //if user is not logged in
+    if([_loginButton.title isEqualToString:@"Login"]){
+        //then login
+        [soundCloudController login];
+    }
+    else //if user is logged in (so button says logout
+    {
+        //then log out
+        [soundCloudController logout];
+        _loginButton.title = @"Login";
+
+        self.tracks = nil;
+        [self.tableView reloadData];
+
+    }
 }
 
 #pragma mark - Table view data source
@@ -77,6 +153,7 @@
     
     NSDictionary *track = [self.tracks objectAtIndex:indexPath.row];
     
+    //get the origin dictionary inside of tracks
     origin = [track objectForKey:@"origin"];
     //Set background colour of waveform to that of SoundClouds, taken from website
     [cell.waveForm setBackgroundColor:[UIColor colorWithHexString:@"#ff6600"]];
@@ -89,18 +166,46 @@
     
     cell.creationDate.textColor = [UIColor colorWithHexString:@"#0066cc"];
     [cell.creationDate setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:15]];
-    cell.creationDate.text = [NSString stringWithFormat:@"Year:%@ Month:%@ Day:%@",[origin objectForKey:@"release_year"],[origin objectForKey:@"release_month"],[origin objectForKey:@"release_day"]];
+    
+    if([origin objectForKey:@"release_year"])//== NULL || [origin objectForKey:@"release_month"] == NULL || [origin objectForKey:@"release_day"] ==NULL)
+    {
+        cell.creationDate.text = @"No release date specified";
+    }
+    else
+        cell.creationDate.text = [NSString stringWithFormat:@"Year:%@ Month:%@ Day:%@",[origin objectForKey:@"release_year"],[origin objectForKey:@"release_month"],[origin objectForKey:@"release_day"]];
     
     return cell;
 }
 
 
+
+
+
+
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //get the track that was selected from the table
+    NSDictionary *track = [self.tracks objectAtIndex:indexPath.row];
+    NSLog(@"[track objectForKey:@\"id\"]%@",[track objectForKey:@"id"]);
+    
+    //get the origin object inside of the tracks
+    [self launchRemoteUrlForTrack:[track objectForKey:@"origin"]];
+    
+}
+
+#pragma mark - Launch app or website
+
 -(void)launchRemoteUrlForTrack:(NSDictionary*)track
 {
+    //get track id
     NSString *trackID = [NSString stringWithFormat:@"%@",[track objectForKey:@"id"]];
+    //get url link
     NSString *permaLink = [track objectForKey:@"permalink_url"];
     
     NSString* params = @"tracks:";
+    //append params with track id
     [params stringByAppendingString:trackID];
     
     NSString* URI = @"soundcloud://"; // Text sent through url.
@@ -108,87 +213,23 @@
     UIApplication *ourApplication = [UIApplication sharedApplication];
     NSString *URLEncodedText = [params stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
     NSLog(@"[URI stringByAppendingString:trackID] %@",[URI stringByAppendingString:URLEncodedText]);
+    //Append URI with URLEncodedText
     NSURL *ourURL = [NSURL URLWithString:[URI stringByAppendingString:URLEncodedText]];
     
+    //if we ahve the Sound cloud app open song with this
     if ([ourApplication canOpenURL:ourURL]) {
+        
         [ourApplication openURL:ourURL];
     }
+    //else open the website at the permalink obtained
     else {
         [[UIApplication sharedApplication] openURL:[NSURL URLWithString:permaLink]];
-//        UIAlertView *alertView = [[UIAlertView alloc] initWithTitle:@"App Not Found"
-//                                                            message:[NSString stringWithFormat:@"%@ is not installed. \nWhould you like to install it?", trackID]
-//                                                           delegate:nil
-//                                                  cancelButtonTitle:@"Not now"
-//                                                  otherButtonTitles:@"OK", nil];
-//        [alertView show];
+        
     }
 }
 
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-#pragma mark - Table view delegate
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    NSDictionary *track = [self.tracks objectAtIndex:indexPath.row];
-    NSLog(@"[track objectForKey:@\"id\"]%@",[track objectForKey:@"id"]);
-    
-    [self launchRemoteUrlForTrack:origin];
-    
-//    NSString *streamURL = [track objectForKey:@"stream_url"];
-//    
-//    SCAccount *account = [SCSoundCloud account];
-//    
-//    [SCRequest performMethod:SCRequestMethodGET
-//                  onResource:[NSURL URLWithString:streamURL]
-//             usingParameters:nil
-//                 withAccount:account
-//      sendingProgressHandler:nil
-//             responseHandler:^(NSURLResponse *response, NSData *data, NSError *error) {
-//                 NSError *playerError;
-//                 player = [[AVAudioPlayer alloc] initWithData:data error:&playerError];
-//                 [player prepareToPlay];
-//                 [player play];
-//             }];
-}
 
 @end

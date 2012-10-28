@@ -28,7 +28,6 @@
 		90CCB9341636E80C009F7822 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CCB9331636E80C009F7822 /* Default.png */; };
 		90CCB9361636E80C009F7822 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CCB9351636E80C009F7822 /* Default@2x.png */; };
 		90CCB9381636E80C009F7822 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 90CCB9371636E80C009F7822 /* Default-568h@2x.png */; };
-		90CCB93B1636E80C009F7822 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCB93A1636E80C009F7822 /* ViewController.m */; };
 		90CCB93E1636E80C009F7822 /* ViewController_iPhone.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CCB93C1636E80C009F7822 /* ViewController_iPhone.xib */; };
 		90CCB9411636E80C009F7822 /* ViewController_iPad.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CCB93F1636E80C009F7822 /* ViewController_iPad.xib */; };
 		90CCB9E01636EAC5009F7822 /* libJSONKit.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CCB9A11636E8B6009F7822 /* libJSONKit.a */; };
@@ -45,6 +44,7 @@
 		90CCBA1416370684009F7822 /* libSoundCloudAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CCB9B21636E8B6009F7822 /* libSoundCloudAPI.a */; };
 		90CCBA181638030C009F7822 /* SCTTrackListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 90CCBA1616380309009F7822 /* SCTTrackListViewController.m */; };
 		90CCBA191638030C009F7822 /* SCTTrackListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CCBA171638030B009F7822 /* SCTTrackListViewController.xib */; };
+		B538F43D163C273800A95522 /* SoundCloudController.m in Sources */ = {isa = PBXBuildFile; fileRef = B538F43C163C273800A95522 /* SoundCloudController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -177,8 +177,6 @@
 		90CCB9331636E80C009F7822 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		90CCB9351636E80C009F7822 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		90CCB9371636E80C009F7822 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
-		90CCB9391636E80C009F7822 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		90CCB93A1636E80C009F7822 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
 		90CCB93D1636E80C009F7822 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPhone.xib; sourceTree = "<group>"; };
 		90CCB9401636E80C009F7822 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/ViewController_iPad.xib; sourceTree = "<group>"; };
 		90CCB9801636E8B5009F7822 /* SoundCloudAPI.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = SoundCloudAPI.xcodeproj; path = CocoaSoundCloudAPI/SoundCloudAPI.xcodeproj; sourceTree = "<group>"; };
@@ -196,6 +194,8 @@
 		90CCBA1516380308009F7822 /* SCTTrackListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTTrackListViewController.h; sourceTree = "<group>"; };
 		90CCBA1616380309009F7822 /* SCTTrackListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTTrackListViewController.m; sourceTree = "<group>"; };
 		90CCBA171638030B009F7822 /* SCTTrackListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCTTrackListViewController.xib; sourceTree = "<group>"; };
+		B538F43B163C273800A95522 /* SoundCloudController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudController.h; sourceTree = "<group>"; };
+		B538F43C163C273800A95522 /* SoundCloudController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudController.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,10 +276,10 @@
 			children = (
 				90CCB9301636E80C009F7822 /* AppDelegate.h */,
 				90CCB9311636E80C009F7822 /* AppDelegate.m */,
-				90CCB9391636E80C009F7822 /* ViewController.h */,
-				90CCB93A1636E80C009F7822 /* ViewController.m */,
 				90CCBA1516380308009F7822 /* SCTTrackListViewController.h */,
 				90CCBA1616380309009F7822 /* SCTTrackListViewController.m */,
+				B538F43B163C273800A95522 /* SoundCloudController.h */,
+				B538F43C163C273800A95522 /* SoundCloudController.m */,
 				908639AF163970BD003DFB45 /* UIColor+HEXString.h */,
 				908639B0163970BD003DFB45 /* UIColor+HEXString.m */,
 				9091F24D16394CB900F621BB /* UIImageView+ImageDisplay.h */,
@@ -525,11 +525,11 @@
 			files = (
 				90CCB92E1636E80C009F7822 /* main.m in Sources */,
 				90CCB9321636E80C009F7822 /* AppDelegate.m in Sources */,
-				90CCB93B1636E80C009F7822 /* ViewController.m in Sources */,
 				90CCBA181638030C009F7822 /* SCTTrackListViewController.m in Sources */,
 				9091F195163891E700F621BB /* SCTCustomCell.m in Sources */,
 				9091F24F16394CBA00F621BB /* UIImageView+ImageDisplay.m in Sources */,
 				908639B1163970BD003DFB45 /* UIColor+HEXString.m in Sources */,
+				B538F43D163C273800A95522 /* SoundCloudController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
