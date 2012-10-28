@@ -7,6 +7,10 @@
 //
 
 #import "SCTLikeListViewController.h"
+#import "SCUI.h"
+#import "SCTCustomCell.h"
+#import "UIImageView+ImageDisplay.h"
+#import "UIColor+HEXString.h"
 
 @interface SCTLikeListViewController ()
 
@@ -41,31 +45,74 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)viewDidAppear:(BOOL)animated{
+    soundCloudController = [[SoundCloudController alloc]init];
+    soundCloudController.delegate = self;
+    
+    SCAccount *account = [SCSoundCloud account];
+    //check if the user has already got an open session (previous login)
+    if (account == nil) {
+        //if not login
+        [soundCloudController login];
+    }
+    else
+    {
+        //if they have then change button title and get the tracks
+        //_loginButton.title = @"Logout";
+        [soundCloudController getLikes];
+    }
+    
+}
+
 #pragma mark - Table view data source
+
+- (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    return 88;
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-#warning Potentially incomplete method implementation.
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-#warning Incomplete method implementation.
     // Return the number of rows in the section.
-    return 0;
+    return [_likedTracks count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    static NSString *SCTCustomCellID = @"SCTCustomCell";
+    SCTCustomCell *cell = (SCTCustomCell*)[tableView dequeueReusableCellWithIdentifier:SCTCustomCellID];
+    
     if (cell == nil) {
-        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SCTCustomCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
     }
     
-    // Configure the cell...
+    NSDictionary *favorite = [self.likedTracks objectAtIndex:indexPath.row];
+    
+    //Set background colour of waveform to that of SoundClouds, taken from website
+    [cell.waveForm setBackgroundColor:[UIColor colorWithHexString:@"#ff6600"]];
+    [cell.waveForm displayPlaceHolderImage:[UIImage imageNamed:@"placeHolder.png"] FromURLString:[favorite objectForKey:@"waveform_url"]];
+    
+    //set colour and text of font to that of SoundClouds, taken from website
+    [cell.title setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:15]];
+    cell.title.textColor = [UIColor colorWithHexString:@"#0066cc"];
+    [cell.title setText:[favorite objectForKey:@"title"]];
+    
+    cell.creationDate.textColor = [UIColor colorWithHexString:@"#0066cc"];
+    [cell.creationDate setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:15]];
+    
+    if([favorite objectForKey:@"release_year"] || [favorite objectForKey:@"release_month"] || [favorite objectForKey:@"release_day"])
+    {
+        cell.creationDate.text = @"No release date specified";
+    }
+    else
+        cell.creationDate.text = [NSString stringWithFormat:@"Year:%@ Month:%@ Day:%@",[favorite objectForKey:@"release_year"],[favorite objectForKey:@"release_month"],[favorite objectForKey:@"release_day"]];
     
     return cell;
 }
@@ -137,14 +184,14 @@
     [self presentModalViewController:loginView animated:YES];
 }
 
-- (void)tracksReceived:(NSArray *)arrayOfCollections{
+- (void)favoritesReceived:(NSArray *)favorites{
     //populate _tracks with data
-    _likedTracks = [[NSArray alloc]initWithArray:arrayOfCollections];
+    _likedTracks = [[NSArray alloc]initWithArray:favorites];
     //reload table
     [self.tableView reloadData];
 }
 
-- (void)tracksFailedToReceive{
+- (void)favoritesFailedToReceive{
     UIAlertView *problemConnecting = [[UIAlertView alloc]
                                       initWithTitle:@"Problem Connecting"
                                       message:@"No data could be retrieved, there could be a problem with your connection, try again later"

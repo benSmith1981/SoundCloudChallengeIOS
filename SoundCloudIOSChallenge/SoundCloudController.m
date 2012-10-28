@@ -98,4 +98,51 @@
              responseHandler:handler];
 }
 
+-(void)getLikes{
+    //Check if user logged in or not
+    SCAccount *account = [SCSoundCloud account];
+    if (account == nil) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Not Logged In"
+                              message:@"You must login first"
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    SCRequestResponseHandler handler;
+    handler = ^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSError *jsonError = nil;
+        NSArray *arrayOfFavourites;
+        //check if we get any data back
+        if (data != nil) {
+            NSJSONSerialization *jsonResponse = [NSJSONSerialization
+                                                 JSONObjectWithData:data
+                                                 options:0
+                                                 error:&jsonError];
+            arrayOfFavourites = [[NSArray alloc]initWithArray:(NSArray*)jsonResponse];
+        }
+        //if not warn the user problem connecting
+        else{
+            //delegate call back to failed receive favorites in SCTLikeListViewController
+            [_delegate favoritesFailedToReceive];
+        }
+        
+        if (!jsonError && [arrayOfFavourites isKindOfClass:[NSArray class]]) {
+            //delegate call back to favoritesReceived in SCTLikeListViewController passing back the data for display
+            [_delegate favoritesReceived:arrayOfFavourites];
+        }
+    };
+    //Get the Favourites
+    NSString *resourceURL = @"https://api.soundcloud.com/me/favorites.json"; //I hate the American spelling of favorites!! It's gotta 'U' in it!
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:resourceURL]
+             usingParameters:nil
+                 withAccount:account
+      sendingProgressHandler:nil
+             responseHandler:handler];
+}
+
 @end

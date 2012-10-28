@@ -10,7 +10,7 @@
 #import <SCUI.h>
 
 
-@class ViewController,SCTTrackListViewController;
+@class ViewController,SCTTrackListTableView;
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate, UITabBarControllerDelegate>
 
@@ -19,5 +19,5 @@
 //@property (strong, nonatomic) ViewController *viewController;
 @property (strong, nonatomic) UITabBarController *tabBarController;
 
-@property (strong, nonatomic) SCTTrackListViewController *trackList;
+@property (strong, nonatomic) SCTTrackListTableView *trackList;
 @end

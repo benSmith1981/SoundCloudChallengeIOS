@@ -21,6 +21,10 @@
  */
 - (void)getTracks;
 
+/**Get the tracks favourited by the user
+ */
+-(void)getLikes;
+
 /**Logs the user in
  */
 - (void) login;
@@ -31,6 +35,8 @@
 @end
 
 @protocol SoundCloudControllerDelegate
+
+@optional
 /**When login fails this delegate call back occurs
  */
 - (void)loginDidFail;
@@ -52,4 +58,12 @@
 /**Called when tracks have not been successfully received for some reason
  */
 - (void)tracksFailedToReceive;
+
+/**Called when favorites have been successfully received for some reason
+ */
+- (void)favoritesReceived:(NSArray*)favorites;
+
+/**Called when favorites have not been successfully received for some reason
+ */
+- (void)favoritesFailedToReceive;
 @end

@@ -21,26 +21,22 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
-         timestampString = "373147996.496109"
+         timestampString = "373160795.922576"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "107"
-         endingLineNumber = "107"
-         landmarkName = "-loginButton:"
-         landmarkType = "5">
+         startingLineNumber = "194"
+         endingLineNumber = "194">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
-         timestampString = "373147996.496109"
+         timestampString = "373160795.922576"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "81"
-         endingLineNumber = "81"
-         landmarkName = "-loginWithModalView:"
-         landmarkType = "5">
+         startingLineNumber = "168"
+         endingLineNumber = "168">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -60,13 +56,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
-         timestampString = "373147996.496109"
+         timestampString = "373160795.922576"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "76"
-         endingLineNumber = "76"
-         landmarkName = "-loginSuccess"
-         landmarkType = "5">
+         startingLineNumber = "163"
+         endingLineNumber = "163">
       </FileBreakpoint>
       <FileBreakpoint
          shouldBeEnabled = "Yes"
@@ -99,12 +93,91 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
-         timestampString = "373147996.496109"
+         timestampString = "373160795.922576"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "48"
-         endingLineNumber = "48"
-         landmarkName = "-viewDidAppear:"
+         startingLineNumber = "135"
+         endingLineNumber = "135">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
+         timestampString = "373160795.922576"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "141"
+         endingLineNumber = "141">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
+         timestampString = "373160795.922576"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "173"
+         endingLineNumber = "173">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
+         timestampString = "373160795.922576"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "159"
+         endingLineNumber = "159">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
+         timestampString = "373160795.922576"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "294"
+         endingLineNumber = "294">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
+         timestampString = "373160795.922576"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "281"
+         endingLineNumber = "281">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SoundCloudIOSChallenge/SoundCloudController.m"
+         timestampString = "373155631.050746"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "120"
+         endingLineNumber = "120"
+         landmarkName = "-getLikes"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "Yes"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "SoundCloudIOSChallenge/SCTLikeListViewController.m"
+         timestampString = "373155631.050746"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "99"
+         endingLineNumber = "99"
+         landmarkName = "-tableView:cellForRowAtIndexPath:"
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
@@ -112,64 +185,12 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
-         timestampString = "373147996.496109"
+         timestampString = "373160851.258249"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "54"
-         endingLineNumber = "54"
-         landmarkName = "-viewDidAppear:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
-         timestampString = "373147996.496109"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "86"
-         endingLineNumber = "86"
-         landmarkName = "-tracksReceived:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
-         timestampString = "373147996.496109"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "72"
-         endingLineNumber = "72"
-         landmarkName = "-loginDidFail"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
-         timestampString = "373148915.736969"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "207"
-         endingLineNumber = "207"
-         landmarkName = "-launchRemoteUrlForTrack:"
-         landmarkType = "5">
-      </FileBreakpoint>
-      <FileBreakpoint
-         shouldBeEnabled = "Yes"
-         ignoreCount = "0"
-         continueAfterRunningActions = "No"
-         filePath = "SoundCloudIOSChallenge/SCTTrackListViewController.m"
-         timestampString = "373148915.736969"
-         startingColumnNumber = "9223372036854775807"
-         endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "194"
-         endingLineNumber = "194"
-         landmarkName = "-tableView:didSelectRowAtIndexPath:"
+         startingLineNumber = "31"
+         endingLineNumber = "31"
+         landmarkName = "-viewDidLoad"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>

@@ -8,40 +8,32 @@
 
 #import "AppDelegate.h"
 
-#import "SCTTrackListViewController.h"
+#import "SCTTrackListTableView.h"
 
 #import "SCTLikeListViewController.h"
 
+#import "SCTTrackListViewController.h"
 @implementation AppDelegate
 @synthesize trackList = _trackList;
 @synthesize tabBarController = _tabBarController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-//    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-//    // Override point for customization after application launch.
-//    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-//        self.trackList = [[SCTTrackListViewController alloc]initWithNibName:@"SCTTrackListViewController" bundle:nil];
-//        
-//        //self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPhone" bundle:nil];
-//    } else {
-//        //self.viewController = [[ViewController alloc] initWithNibName:@"ViewController_iPad" bundle:nil];
-//    }
-//    //[self logInstalledFonts];
-//    self.window.rootViewController = self.trackList;
-//    [self.window makeKeyAndVisible];
-//    return YES;
-    
-    
-    
-    
-    
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
-    UIViewController *viewController1, *viewController2;
+    SCTTrackListViewController *viewController1;
+    UIViewController *viewController2;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        viewController1 = [[SCTTrackListViewController alloc] initWithNibName:@"SCTTrackListViewController" bundle:nil];
+        
+        
+        viewController1 = [[SCTTrackListViewController alloc]init];
+
+        
+        viewController1.title = @"Incoming Tracks";
+//        viewController1.tabBarItem.image =
+        
         viewController2 = [[SCTLikeListViewController alloc] initWithNibName:@"SCTLikeListViewController" bundle:nil];
+        viewController2.title = @"Favourites";
     }
     
     _tabBarController = [[UITabBarController alloc] init];
