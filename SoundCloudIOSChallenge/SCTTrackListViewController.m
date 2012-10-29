@@ -7,20 +7,23 @@
 //
 
 #import "SCTTrackListViewController.h"
+#import "SCUI.h"
+#import "SCTCustomCell.h"
+#import "UIImageView+ImageDisplay.h"
+#import "UIColor+HEXString.h"
 
 @interface SCTTrackListViewController ()
 
 @end
 
 @implementation SCTTrackListViewController
-@synthesize loginButton = _loginButton;
 
-
-- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+- (id)init
 {
-    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    self = [super init];
     if (self) {
         // Custom initialization
+
     }
     return self;
 }
@@ -28,97 +31,74 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    trackListTable = [[SCTTrackListTableView alloc]initWithFrame:CGRectMake(0, 44, 320, 396) style:UITableViewStylePlain];
-    [self.view addSubview:trackListTable];
-	// Do any additional setup after loading the view.
+	//Set title for the view
+    [self.titleLabel setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:15]];
+    [self.titleLabel setTextColor:[UIColor colorWithHexString:@"#ff6600"]];
+    self.titleLabel.text = @"Incoming Tracks";
 }
 
-- (void)didReceiveMemoryWarning
+
+#pragma mark - Table view data source
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
-
-- (void)viewDidAppear:(BOOL)animated{
-    soundCloudController = [[SoundCloudController alloc]init];
-    soundCloudController.delegate = self;
+    static NSString *SCTCustomCellID = @"SCTCustomCell";
+    SCTCustomCell *cell = (SCTCustomCell*)[tableView dequeueReusableCellWithIdentifier:SCTCustomCellID];
     
-    SCAccount *account = [SCSoundCloud account];
-    //check if the user has already got an open session (previous login)
-    if (account == nil) {
-        //if not login
-        [soundCloudController login];
+    if (cell == nil) {
+        NSArray *nib = [[NSBundle mainBundle] loadNibNamed:@"SCTCustomCell" owner:self options:nil];
+        cell = [nib objectAtIndex:0];
+        
+    }
+    
+    NSDictionary *track = [self.tracks objectAtIndex:indexPath.row];
+    
+    //get the origin dictionary inside of tracks
+    origin = [track objectForKey:@"origin"];
+    //Set background colour of waveform to that of SoundClouds, taken from website
+    [cell.waveForm setBackgroundColor:[UIColor colorWithHexString:@"#ff6600"]];
+    [cell.waveForm displayPlaceHolderImage:[UIImage imageNamed:@"placeHolder.png"] FromURLString:[origin objectForKey:@"waveform_url"]];
+    
+    //set colour and text of font to that of SoundClouds, taken from website
+    [cell.title setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:13]];
+    cell.title.textColor = [UIColor colorWithHexString:@"#0066cc"];
+    [cell.title setText:[origin objectForKey:@"title"]];
+    
+    cell.creationDate.textColor = [UIColor colorWithHexString:@"#0066cc"];
+    [cell.creationDate setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:13]];
+    
+    if([origin objectForKey:@"release_year"] || [origin objectForKey:@"release_month"] || [origin objectForKey:@"release_day"])
+    {
+        cell.creationDate.text = @"No release date specified";
     }
     else
-    {
-        //if they have then change button title and get the tracks
-        _loginButton.title = @"Logout";
-        [soundCloudController getTracks];
-    }
+        cell.creationDate.text = [NSString stringWithFormat:@"Year:%@ Month:%@ Day:%@",[origin objectForKey:@"release_year"],[origin objectForKey:@"release_month"],[origin objectForKey:@"release_day"]];
     
+    return cell;
 }
 
-//- (void)viewDidUnload {
-//    [self setLoginButton:nil];
-//    [super viewDidUnload];
-//}
-//
-//- (void)didReceiveMemoryWarning
-//{
-//    [super didReceiveMemoryWarning];
-//    // Dispose of any resources that can be recreated.
-//}
-#pragma mark - Login button action
 
-- (IBAction)loginButton:(id)sender {
-    //if user is not logged in
-    if([_loginButton.title isEqualToString:@"Login"]){
-        //then login
-        [soundCloudController login];
-    }
-    else //if user is logged in (so button says logout
-    {
-        //then log out
-        [soundCloudController logout];
-        _loginButton.title = @"Login";
-        
-        trackListTable.tracks = nil;
-        [trackListTable reloadData];
-        
-    }
+#pragma mark - Table view delegate
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    //get the track that was selected from the table
+    NSDictionary *track = [self.tracks objectAtIndex:indexPath.row];
+    NSLog(@"[track objectForKey:@\"id\"]%@",[track objectForKey:@"id"]);
+    
+    //get the origin object inside of the tracks
+    [self launchRemoteUrlForTrack:[track objectForKey:@"origin"]];
+    
 }
 
 #pragma mark - SoundCloudControllerDelegate
-- (void)loginDidFail{
-    _loginButton.title = @"Login";
-    
-}
 -(void)loginSuccess{
-    _loginButton.title = @"Logout";
+    self.loginButton.title = @"Logout";
+    [soundCloudController getUserImage];
     [soundCloudController getTracks];
 }
 
-- (void)loginWithModalView:(SCLoginViewController*)loginView{
-    [self presentModalViewController:loginView animated:YES];
-}
 
-- (void)tracksReceived:(NSArray *)arrayOfCollections{
-    //populate _tracks with data
-    trackListTable.tracks = [[NSArray alloc]initWithArray:arrayOfCollections];
-    //reload table
-    [trackListTable reloadData];
-}
-
-- (void)tracksFailedToReceive{
-    UIAlertView *problemConnecting = [[UIAlertView alloc]
-                                      initWithTitle:@"Problem Connecting"
-                                      message:@"No data could be retrieved, there could be a problem with your connection, try again later"
-                                      delegate:nil
-                                      cancelButtonTitle:nil
-                                      otherButtonTitles:@"OK", nil];
-    
-    [problemConnecting show];
-}
 
 
 

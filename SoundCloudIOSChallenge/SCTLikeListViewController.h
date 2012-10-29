@@ -8,13 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SoundCloudController.h"
+#import "SCTBaseViewController.h"
 
-@interface SCTLikeListViewController : UITableViewController <SoundCloudControllerDelegate>
-{
-    SoundCloudController *soundCloudController;
-}
-/** Array of tracks liked by the user received from call to the SoundCloud API */
-@property (nonatomic, strong) NSArray *likedTracks;
-
+@interface SCTLikeListViewController : SCTBaseViewController
 
 @end

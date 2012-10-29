@@ -39,12 +39,17 @@
 		90CCB9F21636EB89009F7822 /* SoundCloud.bundle in Resources */ = {isa = PBXBuildFile; fileRef = 90CCB9F11636EB89009F7822 /* SoundCloud.bundle */; };
 		90CCBA1316370674009F7822 /* libOAuth2Client.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CCB9A91636E8B6009F7822 /* libOAuth2Client.a */; };
 		90CCBA1416370684009F7822 /* libSoundCloudAPI.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 90CCB9B21636E8B6009F7822 /* libSoundCloudAPI.a */; };
-		90CCBA191638030C009F7822 /* SCTTrackListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CCBA171638030B009F7822 /* SCTTrackListViewController.xib */; };
+		90CCBA191638030C009F7822 /* SCTBaseViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 90CCBA171638030B009F7822 /* SCTBaseViewController.xib */; };
 		B538F43D163C273800A95522 /* SoundCloudController.m in Sources */ = {isa = PBXBuildFile; fileRef = B538F43C163C273800A95522 /* SoundCloudController.m */; };
 		B53BBA1B163DD1FC00F3ECF8 /* SCTLikeListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B53BBA19163DD1FC00F3ECF8 /* SCTLikeListViewController.m */; };
-		B53BBA1C163DD1FC00F3ECF8 /* SCTLikeListViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA1A163DD1FC00F3ECF8 /* SCTLikeListViewController.xib */; };
-		B53BBA27163DF3A700F3ECF8 /* SCTTrackListTableView.m in Sources */ = {isa = PBXBuildFile; fileRef = B53BBA26163DF3A600F3ECF8 /* SCTTrackListTableView.m */; };
 		B53BBA2A163DF3E300F3ECF8 /* SCTTrackListViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B53BBA29163DF3E200F3ECF8 /* SCTTrackListViewController.m */; };
+		B53BBA31163EAABA00F3ECF8 /* SCTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B53BBA30163EAAB900F3ECF8 /* SCTBaseViewController.m */; };
+		B53BBA36163EF73800F3ECF8 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA34163EF73700F3ECF8 /* reload.png */; };
+		B53BBA37163EF73800F3ECF8 /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA35163EF73800F3ECF8 /* reload@2x.png */; };
+		B53BBA40163F035000F3ECF8 /* blackheart44x44.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA3C163F034C00F3ECF8 /* blackheart44x44.jpeg */; };
+		B53BBA41163F035000F3ECF8 /* blackheart44x44@2x.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA3D163F034C00F3ECF8 /* blackheart44x44@2x.jpeg */; };
+		B53BBA42163F035000F3ECF8 /* Sound_Wave44x44.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA3E163F034D00F3ECF8 /* Sound_Wave44x44.jpeg */; };
+		B53BBA43163F035000F3ECF8 /* Sound_Wave44x44@2x.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA3F163F034F00F3ECF8 /* Sound_Wave44x44@2x.jpeg */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -188,16 +193,21 @@
 		90CCB9ED1636EB1B009F7822 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		90CCB9EF1636EB22009F7822 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		90CCB9F11636EB89009F7822 /* SoundCloud.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = SoundCloud.bundle; sourceTree = "<group>"; };
-		90CCBA1516380308009F7822 /* SCTTrackListTableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTTrackListTableView.h; sourceTree = "<group>"; };
-		90CCBA171638030B009F7822 /* SCTTrackListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCTTrackListViewController.xib; sourceTree = "<group>"; };
+		90CCBA171638030B009F7822 /* SCTBaseViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCTBaseViewController.xib; sourceTree = "<group>"; };
 		B538F43B163C273800A95522 /* SoundCloudController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SoundCloudController.h; sourceTree = "<group>"; };
 		B538F43C163C273800A95522 /* SoundCloudController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SoundCloudController.m; sourceTree = "<group>"; };
 		B53BBA18163DD1FC00F3ECF8 /* SCTLikeListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTLikeListViewController.h; sourceTree = "<group>"; };
 		B53BBA19163DD1FC00F3ECF8 /* SCTLikeListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTLikeListViewController.m; sourceTree = "<group>"; };
-		B53BBA1A163DD1FC00F3ECF8 /* SCTLikeListViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = SCTLikeListViewController.xib; sourceTree = "<group>"; };
-		B53BBA26163DF3A600F3ECF8 /* SCTTrackListTableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTTrackListTableView.m; sourceTree = "<group>"; };
 		B53BBA28163DF3E000F3ECF8 /* SCTTrackListViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTTrackListViewController.h; sourceTree = "<group>"; };
 		B53BBA29163DF3E200F3ECF8 /* SCTTrackListViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTTrackListViewController.m; sourceTree = "<group>"; };
+		B53BBA2F163EAAB700F3ECF8 /* SCTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SCTBaseViewController.h; sourceTree = "<group>"; };
+		B53BBA30163EAAB900F3ECF8 /* SCTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTBaseViewController.m; sourceTree = "<group>"; };
+		B53BBA34163EF73700F3ECF8 /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reload.png; path = SoundCloud.bundle/reload.png; sourceTree = "<group>"; };
+		B53BBA35163EF73800F3ECF8 /* reload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reload@2x.png"; path = "SoundCloud.bundle/reload@2x.png"; sourceTree = "<group>"; };
+		B53BBA3C163F034C00F3ECF8 /* blackheart44x44.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blackheart44x44.jpeg; sourceTree = "<group>"; };
+		B53BBA3D163F034C00F3ECF8 /* blackheart44x44@2x.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "blackheart44x44@2x.jpeg"; sourceTree = "<group>"; };
+		B53BBA3E163F034D00F3ECF8 /* Sound_Wave44x44.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Sound_Wave44x44.jpeg; sourceTree = "<group>"; };
+		B53BBA3F163F034F00F3ECF8 /* Sound_Wave44x44@2x.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Sound_Wave44x44@2x.jpeg"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,10 +288,10 @@
 			children = (
 				90CCB9301636E80C009F7822 /* AppDelegate.h */,
 				90CCB9311636E80C009F7822 /* AppDelegate.m */,
+				B53BBA2F163EAAB700F3ECF8 /* SCTBaseViewController.h */,
+				B53BBA30163EAAB900F3ECF8 /* SCTBaseViewController.m */,
 				B53BBA28163DF3E000F3ECF8 /* SCTTrackListViewController.h */,
 				B53BBA29163DF3E200F3ECF8 /* SCTTrackListViewController.m */,
-				90CCBA1516380308009F7822 /* SCTTrackListTableView.h */,
-				B53BBA26163DF3A600F3ECF8 /* SCTTrackListTableView.m */,
 				B53BBA18163DD1FC00F3ECF8 /* SCTLikeListViewController.h */,
 				B53BBA19163DD1FC00F3ECF8 /* SCTLikeListViewController.m */,
 				B538F43B163C273800A95522 /* SoundCloudController.h */,
@@ -292,8 +302,7 @@
 				9091F24E16394CBA00F621BB /* UIImageView+ImageDisplay.m */,
 				9091F193163891E700F621BB /* SCTCustomCell.h */,
 				9091F194163891E700F621BB /* SCTCustomCell.m */,
-				90CCBA171638030B009F7822 /* SCTTrackListViewController.xib */,
-				B53BBA1A163DD1FC00F3ECF8 /* SCTLikeListViewController.xib */,
+				90CCBA171638030B009F7822 /* SCTBaseViewController.xib */,
 				9091F1981638923900F621BB /* SCTCustomCell.xib */,
 				90CCB9281636E80C009F7822 /* Supporting Files */,
 			);
@@ -303,6 +312,12 @@
 		90CCB9281636E80C009F7822 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				B53BBA3C163F034C00F3ECF8 /* blackheart44x44.jpeg */,
+				B53BBA3D163F034C00F3ECF8 /* blackheart44x44@2x.jpeg */,
+				B53BBA3E163F034D00F3ECF8 /* Sound_Wave44x44.jpeg */,
+				B53BBA3F163F034F00F3ECF8 /* Sound_Wave44x44@2x.jpeg */,
+				B53BBA34163EF73700F3ECF8 /* reload.png */,
+				B53BBA35163EF73800F3ECF8 /* reload@2x.png */,
 				9091F27B1639552F00F621BB /* placeHolder.png */,
 				908639821639690F003DFB45 /* LucidaGrande.ttf */,
 				90CCB9F11636EB89009F7822 /* SoundCloud.bundle */,
@@ -510,11 +525,16 @@
 				90CCB9361636E80C009F7822 /* Default@2x.png in Resources */,
 				90CCB9381636E80C009F7822 /* Default-568h@2x.png in Resources */,
 				90CCB9F21636EB89009F7822 /* SoundCloud.bundle in Resources */,
-				90CCBA191638030C009F7822 /* SCTTrackListViewController.xib in Resources */,
+				90CCBA191638030C009F7822 /* SCTBaseViewController.xib in Resources */,
 				9091F1991638923900F621BB /* SCTCustomCell.xib in Resources */,
 				9091F27C1639552F00F621BB /* placeHolder.png in Resources */,
 				908639AE16396E34003DFB45 /* LucidaGrande.ttf in Resources */,
-				B53BBA1C163DD1FC00F3ECF8 /* SCTLikeListViewController.xib in Resources */,
+				B53BBA36163EF73800F3ECF8 /* reload.png in Resources */,
+				B53BBA37163EF73800F3ECF8 /* reload@2x.png in Resources */,
+				B53BBA40163F035000F3ECF8 /* blackheart44x44.jpeg in Resources */,
+				B53BBA41163F035000F3ECF8 /* blackheart44x44@2x.jpeg in Resources */,
+				B53BBA42163F035000F3ECF8 /* Sound_Wave44x44.jpeg in Resources */,
+				B53BBA43163F035000F3ECF8 /* Sound_Wave44x44@2x.jpeg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -532,8 +552,8 @@
 				908639B1163970BD003DFB45 /* UIColor+HEXString.m in Sources */,
 				B538F43D163C273800A95522 /* SoundCloudController.m in Sources */,
 				B53BBA1B163DD1FC00F3ECF8 /* SCTLikeListViewController.m in Sources */,
-				B53BBA27163DF3A700F3ECF8 /* SCTTrackListTableView.m in Sources */,
 				B53BBA2A163DF3E300F3ECF8 /* SCTTrackListViewController.m in Sources */,
+				B53BBA31163EAABA00F3ECF8 /* SCTBaseViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -32,6 +32,11 @@
 /**Logs the user out
  */
 - (void) logout;
+
+/** Gets the user image then calls delegate back passing it the URL string path
+ */
+- (void)getUserImage;
+
 @end
 
 @protocol SoundCloudControllerDelegate
@@ -44,6 +49,10 @@
 /**When login succeeds this delegate call back occurs
  */
 - (void)loginSuccess;
+
+/**Called when the user has logged out to carry out specific function
+ */
+- (void) loggedOut;
 
 /**This is called from the login method so show the modal login view
  @param loginView This is the modal login view passed back to the table view
@@ -66,4 +75,12 @@
 /**Called when favorites have not been successfully received for some reason
  */
 - (void)favoritesFailedToReceive;
+
+/**Called when image for user is received
+ */
+- (void)imageReceived:(NSString*)userImagePath;
+
+/**Called when image for user is not received
+ */
+-(void)imageNotReceived;
 @end

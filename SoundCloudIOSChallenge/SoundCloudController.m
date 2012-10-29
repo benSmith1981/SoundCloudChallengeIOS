@@ -47,6 +47,7 @@
 - (void) logout
 {
     [SCSoundCloud removeAccess];
+    [_delegate loggedOut];
 }
 
 - (void)getTracks {
@@ -143,6 +144,54 @@
                  withAccount:account
       sendingProgressHandler:nil
              responseHandler:handler];
+}
+
+- (void)getUserImage {
+    //Check if user logged in or not
+    SCAccount *account = [SCSoundCloud account];
+    if (account == nil) {
+        UIAlertView *alert = [[UIAlertView alloc]
+                              initWithTitle:@"Not Logged In"
+                              message:@"You must login first"
+                              delegate:nil
+                              cancelButtonTitle:@"OK"
+                              otherButtonTitles:nil];
+        [alert show];
+        return;
+    }
+    
+    SCRequestResponseHandler handler;
+    handler = ^(NSURLResponse *response, NSData *data, NSError *error) {
+        NSError *jsonError = nil;
+        NSDictionary *userDetails;
+        //check if we get any data back
+        if (data != nil) {
+            NSJSONSerialization *jsonResponse = [NSJSONSerialization
+                                                 JSONObjectWithData:data
+                                                 options:0
+                                                 error:&jsonError];
+            userDetails = [[NSDictionary alloc]initWithDictionary:(NSDictionary*)jsonResponse];
+        }
+        //if not warn the user problem connecting
+        else{
+            //delegate call back to failed receive favorites in SCTLikeListViewController
+            [_delegate imageNotReceived];
+        }
+        
+        if (!jsonError && [userDetails isKindOfClass:[NSDictionary class]]) {
+            //delegate call back to favoritesReceived in SCTLikeListViewController passing back the data for display
+            [_delegate imageReceived:[userDetails objectForKey:@"avatar_url"]];
+        }
+    };
+    //Get the Favourites
+    NSString *resourceURL = @"https://api.soundcloud.com/me.json"; //I hate the American spelling of favorites!! It's gotta 'U' in it!
+    [SCRequest performMethod:SCRequestMethodGET
+                  onResource:[NSURL URLWithString:resourceURL]
+             usingParameters:nil
+                 withAccount:account
+      sendingProgressHandler:nil
+             responseHandler:handler];
+    
 }
 
 @end

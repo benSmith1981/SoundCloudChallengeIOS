@@ -8,13 +8,10 @@
 
 #import "AppDelegate.h"
 
-#import "SCTTrackListTableView.h"
-
 #import "SCTLikeListViewController.h"
 
 #import "SCTTrackListViewController.h"
 @implementation AppDelegate
-@synthesize trackList = _trackList;
 @synthesize tabBarController = _tabBarController;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
@@ -22,18 +19,17 @@
     self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
     // Override point for customization after application launch.
     SCTTrackListViewController *viewController1;
-    UIViewController *viewController2;
+    SCTLikeListViewController *viewController2;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
         
         
         viewController1 = [[SCTTrackListViewController alloc]init];
+        viewController1.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Incoming Tracks" image:[UIImage imageNamed:@"Sound_Wave44x44.jpeg"] tag:1];
+        
+        viewController2 = [[SCTLikeListViewController alloc] init];
+        viewController2.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Favourites" image:[UIImage imageNamed:@"blackheart44x44.jpeg"] tag:1];
 
-        
-        viewController1.title = @"Incoming Tracks";
-//        viewController1.tabBarItem.image =
-        
-        viewController2 = [[SCTLikeListViewController alloc] initWithNibName:@"SCTLikeListViewController" bundle:nil];
-        viewController2.title = @"Favourites";
+        //viewController2.title = @"Favourites";
     }
     
     _tabBarController = [[UITabBarController alloc] init];

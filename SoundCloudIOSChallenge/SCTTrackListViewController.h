@@ -8,22 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "SoundCloudController.h"
-#import "SCTTrackListTableView.h"
+#import "SCTBaseViewController.h"
 
-@interface SCTTrackListViewController : UIViewController <SoundCloudControllerDelegate>
-{
-    SoundCloudController *soundCloudController;
-    SCTTrackListTableView *trackListTable;
- 
-}
-/** Login button displayed on the toolbar, allowing the user to login and out*/
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *loginButton;
-
-
-/**Login action method called when button is pressed
- @param sender The button object
- @return IBAction
- */
-- (IBAction)loginButton:(id)sender;
+@interface SCTTrackListViewController : SCTBaseViewController
 
 @end

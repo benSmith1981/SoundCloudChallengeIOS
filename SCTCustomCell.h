@@ -10,7 +10,12 @@
 
 @interface SCTCustomCell : UITableViewCell
 
+/** The title of the track */
 @property (weak, nonatomic) IBOutlet UILabel *title;
+
+/** The creation date of the track */
 @property (weak, nonatomic) IBOutlet UILabel *creationDate;
+
+/** The waveform image of the track */
 @property (weak, nonatomic) IBOutlet UIImageView *waveForm;
 @end
