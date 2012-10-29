@@ -96,12 +96,7 @@
     return 1;
 }
 
-- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
-{
-    // Return the number of rows in the section.
-    return [self.tracks count];
 
-}
 
 
 #pragma mark - Login button action
@@ -116,11 +111,8 @@
     {
         //then log out
         self.loginButton.title = @"Login";
-        //_userImage.hidden = TRUE;
-
-        //_userImage.image = nil;
-        //[_userImage setNeedsDisplay];
         _tracks = nil;
+        _likes = nil;
         [self.trackListTable reloadData];
         [soundCloudController logout];
     }
@@ -245,7 +237,6 @@
 }
 
 - (void) loggedOut{
-    //_userImage.hidden = TRUE;
     _userImage.image = nil;
 
 }

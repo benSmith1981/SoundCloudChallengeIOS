@@ -8,11 +8,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SoundCloudIOSChallenge/SCTBaseViewController.m"
-         timestampString = "373227432.444054"
+         timestampString = "373230532.889361"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "237"
-         endingLineNumber = "237"
+         startingLineNumber = "229"
+         endingLineNumber = "229"
          landmarkName = "-imageReceived:"
          landmarkType = "5">
       </FileBreakpoint>
@@ -21,11 +21,11 @@
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "SoundCloudIOSChallenge/SCTBaseViewController.m"
-         timestampString = "373227432.444054"
+         timestampString = "373230532.889361"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "236"
-         endingLineNumber = "236"
+         startingLineNumber = "228"
+         endingLineNumber = "228"
          landmarkName = "-imageReceived:"
          landmarkType = "5">
       </FileBreakpoint>

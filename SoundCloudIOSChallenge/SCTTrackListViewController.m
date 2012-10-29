@@ -40,6 +40,13 @@
 
 #pragma mark - Table view data source
 
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    // Return the number of rows in the section.
+    return [self.tracks count];
+    
+}
+
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *SCTCustomCellID = @"SCTCustomCell";
@@ -60,7 +67,7 @@
     [cell.waveForm displayPlaceHolderImage:[UIImage imageNamed:@"placeHolder.png"] FromURLString:[origin objectForKey:@"waveform_url"]];
     
     //set colour and text of font to that of SoundClouds, taken from website
-    [cell.title setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:13]];
+    [cell.title setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:10]];
     cell.title.textColor = [UIColor colorWithHexString:@"#0066cc"];
     [cell.title setText:[origin objectForKey:@"title"]];
     

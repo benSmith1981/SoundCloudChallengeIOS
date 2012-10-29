@@ -46,10 +46,12 @@
 		B53BBA31163EAABA00F3ECF8 /* SCTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B53BBA30163EAAB900F3ECF8 /* SCTBaseViewController.m */; };
 		B53BBA36163EF73800F3ECF8 /* reload.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA34163EF73700F3ECF8 /* reload.png */; };
 		B53BBA37163EF73800F3ECF8 /* reload@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA35163EF73800F3ECF8 /* reload@2x.png */; };
-		B53BBA40163F035000F3ECF8 /* blackheart44x44.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA3C163F034C00F3ECF8 /* blackheart44x44.jpeg */; };
-		B53BBA41163F035000F3ECF8 /* blackheart44x44@2x.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA3D163F034C00F3ECF8 /* blackheart44x44@2x.jpeg */; };
-		B53BBA42163F035000F3ECF8 /* Sound_Wave44x44.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA3E163F034D00F3ECF8 /* Sound_Wave44x44.jpeg */; };
-		B53BBA43163F035000F3ECF8 /* Sound_Wave44x44@2x.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA3F163F034F00F3ECF8 /* Sound_Wave44x44@2x.jpeg */; };
+		B53BBA50163F06FE00F3ECF8 /* blackheartIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA4C163F06EC00F3ECF8 /* blackheartIcon.png */; };
+		B53BBA51163F06FE00F3ECF8 /* blackheartIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA4D163F06ED00F3ECF8 /* blackheartIcon@2x.png */; };
+		B53BBA52163F06FE00F3ECF8 /* Sound_WaveIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA4E163F06F200F3ECF8 /* Sound_WaveIcon.png */; };
+		B53BBA53163F06FE00F3ECF8 /* Sound_WaveIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA4F163F06F700F3ECF8 /* Sound_WaveIcon@2x.png */; };
+		B53BBA55163F0AB700F3ECF8 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA54163F0AB600F3ECF8 /* icon@2x.png */; };
+		B53BBA57163F0ADA00F3ECF8 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA56163F0ADA00F3ECF8 /* icon.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -204,10 +206,12 @@
 		B53BBA30163EAAB900F3ECF8 /* SCTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SCTBaseViewController.m; sourceTree = "<group>"; };
 		B53BBA34163EF73700F3ECF8 /* reload.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = reload.png; path = SoundCloud.bundle/reload.png; sourceTree = "<group>"; };
 		B53BBA35163EF73800F3ECF8 /* reload@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "reload@2x.png"; path = "SoundCloud.bundle/reload@2x.png"; sourceTree = "<group>"; };
-		B53BBA3C163F034C00F3ECF8 /* blackheart44x44.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = blackheart44x44.jpeg; sourceTree = "<group>"; };
-		B53BBA3D163F034C00F3ECF8 /* blackheart44x44@2x.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "blackheart44x44@2x.jpeg"; sourceTree = "<group>"; };
-		B53BBA3E163F034D00F3ECF8 /* Sound_Wave44x44.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Sound_Wave44x44.jpeg; sourceTree = "<group>"; };
-		B53BBA3F163F034F00F3ECF8 /* Sound_Wave44x44@2x.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Sound_Wave44x44@2x.jpeg"; sourceTree = "<group>"; };
+		B53BBA4C163F06EC00F3ECF8 /* blackheartIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackheartIcon.png; sourceTree = "<group>"; };
+		B53BBA4D163F06ED00F3ECF8 /* blackheartIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "blackheartIcon@2x.png"; sourceTree = "<group>"; };
+		B53BBA4E163F06F200F3ECF8 /* Sound_WaveIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Sound_WaveIcon.png; sourceTree = "<group>"; };
+		B53BBA4F163F06F700F3ECF8 /* Sound_WaveIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound_WaveIcon@2x.png"; sourceTree = "<group>"; };
+		B53BBA54163F0AB600F3ECF8 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		B53BBA56163F0ADA00F3ECF8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -243,6 +247,8 @@
 		90CCB9121636E80C009F7822 = {
 			isa = PBXGroup;
 			children = (
+				B53BBA56163F0ADA00F3ECF8 /* icon.png */,
+				B53BBA54163F0AB600F3ECF8 /* icon@2x.png */,
 				9091F24B1639452F00F621BB /* libz.dylib */,
 				9091F1D1163897EC00F621BB /* SystemConfiguration.framework */,
 				9091F1CF163897DE00F621BB /* CFNetwork.framework */,
@@ -312,10 +318,10 @@
 		90CCB9281636E80C009F7822 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				B53BBA3C163F034C00F3ECF8 /* blackheart44x44.jpeg */,
-				B53BBA3D163F034C00F3ECF8 /* blackheart44x44@2x.jpeg */,
-				B53BBA3E163F034D00F3ECF8 /* Sound_Wave44x44.jpeg */,
-				B53BBA3F163F034F00F3ECF8 /* Sound_Wave44x44@2x.jpeg */,
+				B53BBA4C163F06EC00F3ECF8 /* blackheartIcon.png */,
+				B53BBA4D163F06ED00F3ECF8 /* blackheartIcon@2x.png */,
+				B53BBA4E163F06F200F3ECF8 /* Sound_WaveIcon.png */,
+				B53BBA4F163F06F700F3ECF8 /* Sound_WaveIcon@2x.png */,
 				B53BBA34163EF73700F3ECF8 /* reload.png */,
 				B53BBA35163EF73800F3ECF8 /* reload@2x.png */,
 				9091F27B1639552F00F621BB /* placeHolder.png */,
@@ -531,10 +537,12 @@
 				908639AE16396E34003DFB45 /* LucidaGrande.ttf in Resources */,
 				B53BBA36163EF73800F3ECF8 /* reload.png in Resources */,
 				B53BBA37163EF73800F3ECF8 /* reload@2x.png in Resources */,
-				B53BBA40163F035000F3ECF8 /* blackheart44x44.jpeg in Resources */,
-				B53BBA41163F035000F3ECF8 /* blackheart44x44@2x.jpeg in Resources */,
-				B53BBA42163F035000F3ECF8 /* Sound_Wave44x44.jpeg in Resources */,
-				B53BBA43163F035000F3ECF8 /* Sound_Wave44x44@2x.jpeg in Resources */,
+				B53BBA50163F06FE00F3ECF8 /* blackheartIcon.png in Resources */,
+				B53BBA51163F06FE00F3ECF8 /* blackheartIcon@2x.png in Resources */,
+				B53BBA52163F06FE00F3ECF8 /* Sound_WaveIcon.png in Resources */,
+				B53BBA53163F06FE00F3ECF8 /* Sound_WaveIcon@2x.png in Resources */,
+				B53BBA55163F0AB700F3ECF8 /* icon@2x.png in Resources */,
+				B53BBA57163F0ADA00F3ECF8 /* icon.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

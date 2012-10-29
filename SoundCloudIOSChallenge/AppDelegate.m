@@ -21,15 +21,14 @@
     SCTTrackListViewController *viewController1;
     SCTLikeListViewController *viewController2;
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPhone) {
-        
-        
+        //Setup the first viewcontroller on the tabbar
         viewController1 = [[SCTTrackListViewController alloc]init];
-        viewController1.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Incoming Tracks" image:[UIImage imageNamed:@"Sound_Wave44x44.jpeg"] tag:1];
+        viewController1.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Incoming Tracks" image:[UIImage imageNamed:@"Sound_WaveIcon.png"] tag:1];
         
+        //setup the second view controller on the tab bar
         viewController2 = [[SCTLikeListViewController alloc] init];
-        viewController2.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Favourites" image:[UIImage imageNamed:@"blackheart44x44.jpeg"] tag:1];
+        viewController2.tabBarItem = [[UITabBarItem alloc]initWithTitle:@"Favourites" image:[UIImage imageNamed:@"blackheartIcon.png"] tag:1];
 
-        //viewController2.title = @"Favourites";
     }
     
     _tabBarController = [[UITabBarController alloc] init];
