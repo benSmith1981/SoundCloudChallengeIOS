@@ -21,6 +21,7 @@
 @synthesize tracks = _tracks;
 @synthesize titleLabel = _titleLabel;
 @synthesize likes = _likes;
+@synthesize waveformImages = _waveformImages;
 
 - (id)init
 {
@@ -45,6 +46,16 @@
 
 - (void)viewDidAppear:(BOOL)animated{
     
+//    [[NSNotificationCenter defaultCenter] addObserver:self
+//                                             selector:@selector(imageDownloaded:)
+//                                                 name:@"waveformdownloaded"
+//                                               object:nil];
+
+    
+    if(!_waveformImages)
+    {
+        _waveformImages = [[NSMutableArray alloc]init];
+    }
     soundCloudController = [[SoundCloudController alloc]init];
     soundCloudController.delegate = self;
     
@@ -52,7 +63,8 @@
     //check if the user has already got an open session (previous login)
     if (account == nil) {
         //self.userImage = nil;
-        self.tracks = nil;
+        _tracks = nil;
+        _likes = nil;
         [self.trackListTable reloadData];
         //if not login
         [soundCloudController login];
@@ -83,6 +95,18 @@
     
 }
 
+#pragma mark - Image downloaded notification
+//- (void) imageDownloaded:(NSNotification *) notification
+//{
+//    // [notification name] should always be @"TestNotification"
+//    // unless you use this method for observation of other notifications
+//    // as well.
+//    
+//    //NSDictionary *dict = notification.userInfo;
+//    UIImage *imageDownloaded = [notification.userInfo objectForKey:@"image"];
+//    [_waveformImages addObject:imageDownloaded];
+//}
+
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -110,10 +134,6 @@
     else //if user is logged in (so button says logout
     {
         //then log out
-        self.loginButton.title = @"Login";
-        _tracks = nil;
-        _likes = nil;
-        [self.trackListTable reloadData];
         [soundCloudController logout];
     }
 }
@@ -123,13 +143,14 @@
 -(void)launchRemoteUrlForTrack:(NSDictionary*)track
 {
     //get track id
-    NSString *trackID = [NSString stringWithFormat:@"%@",[track objectForKey:@"id"]];
+    NSString *trackID = [NSString stringWithFormat:@"%i",[[track objectForKey:@"id"]intValue]];
+    NSLog(@"%i",[[track objectForKey:@"id"]intValue]);
     //get url link
     NSString *permaLink = [track objectForKey:@"permalink_url"];
 
-    NSString* params = @"tracks:";
+    NSString* params = @"tracks:64856340";
     //append params with track id
-    [params stringByAppendingString:trackID];
+    //[params stringByAppendingString:trackID];
 
     NSString* URI = @"soundcloud://"; // Text sent through url.
 
@@ -179,6 +200,16 @@
  @param arrayOfCollections An array of collection objects from the JSON feed
  */
 - (void)tracksReceived:(NSArray *)arrayOfCollections{
+    
+    //put all the waveform images into an array so can be loaded into the table
+//    for(NSDictionary *track in arrayOfCollections)
+//    {
+//        origin = [track objectForKey:@"origin"];
+//        UIImageView *currentWaveForm = [[UIImageView alloc]init];
+//        [currentWaveForm displayPlaceHolderImage:[UIImage imageNamed:@"placeHolder.png"] FromURLString:[origin objectForKey:@"waveform_url"]];
+//        [_waveformImages addObject:currentWaveForm.image];
+//    }
+    
     //populate _tracks with data
     self.tracks = [[NSArray alloc]initWithArray:arrayOfCollections];
     //reload table
@@ -225,20 +256,27 @@
 /**Called when image for user is received
  */
 - (void)imageReceived:(NSString*)userImagePath{
-    //if(_userImage == nil)
-        [_userImage displayPlaceHolderImage:nil FromURLString:userImagePath];
-    //[_userImage setNeedsDisplay];
+    [_userImage displayPlaceHolderImage:nil FromURLString:userImagePath];
 }
 
 /**Called when image for user is not received
  */
 -(void)imageNotReceived{
-    NSLog(@"USer image not received");
-}
+    UIAlertView *problemConnecting = [[UIAlertView alloc]
+                                      initWithTitle:@"Problem Connecting"
+                                      message:@"The user image could not be retrieved, there could be a problem with your connection, try again later"
+                                      delegate:nil
+                                      cancelButtonTitle:nil
+                                      otherButtonTitles:@"OK", nil];
+    
+    [problemConnecting show];}
 
 - (void) loggedOut{
     _userImage.image = nil;
-
+    self.loginButton.title = @"Login";
+    _tracks = nil;
+    _likes = nil;
+    [self.trackListTable reloadData];
 }
 
 

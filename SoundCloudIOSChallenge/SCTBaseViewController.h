@@ -17,6 +17,9 @@
     SoundCloudController *soundCloudController;
 
 }
+/** Array of waveform images that have been downloaded */
+@property (strong, nonatomic) NSMutableArray *waveformImages;
+
 /** This is the users iamge pulled from facebook shown when they are logged in */
 @property (weak, nonatomic) IBOutlet UIImageView *userImage;
 

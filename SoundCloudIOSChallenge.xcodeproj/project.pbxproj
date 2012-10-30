@@ -52,6 +52,7 @@
 		B53BBA53163F06FE00F3ECF8 /* Sound_WaveIcon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA4F163F06F700F3ECF8 /* Sound_WaveIcon@2x.png */; };
 		B53BBA55163F0AB700F3ECF8 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA54163F0AB600F3ECF8 /* icon@2x.png */; };
 		B53BBA57163F0ADA00F3ECF8 /* icon.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA56163F0ADA00F3ECF8 /* icon.png */; };
+		B53BBA59163F0D0900F3ECF8 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B53BBA58163F0D0900F3ECF8 /* Default-568h@2x.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -212,6 +213,7 @@
 		B53BBA4F163F06F700F3ECF8 /* Sound_WaveIcon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Sound_WaveIcon@2x.png"; sourceTree = "<group>"; };
 		B53BBA54163F0AB600F3ECF8 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
 		B53BBA56163F0ADA00F3ECF8 /* icon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = icon.png; sourceTree = "<group>"; };
+		B53BBA58163F0D0900F3ECF8 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -247,6 +249,7 @@
 		90CCB9121636E80C009F7822 = {
 			isa = PBXGroup;
 			children = (
+				B53BBA58163F0D0900F3ECF8 /* Default-568h@2x.png */,
 				B53BBA56163F0ADA00F3ECF8 /* icon.png */,
 				B53BBA54163F0AB600F3ECF8 /* icon@2x.png */,
 				9091F24B1639452F00F621BB /* libz.dylib */,
@@ -543,6 +546,7 @@
 				B53BBA53163F06FE00F3ECF8 /* Sound_WaveIcon@2x.png in Resources */,
 				B53BBA55163F0AB700F3ECF8 /* icon@2x.png in Resources */,
 				B53BBA57163F0ADA00F3ECF8 /* icon.png in Resources */,
+				B53BBA59163F0D0900F3ECF8 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -633,10 +637,10 @@
 				HEADER_SEARCH_PATHS = "./**";
 				IPHONEOS_DEPLOYMENT_TARGET = 5.0;
 				PROVISIONING_PROFILE = "3E78A914-BBB5-4AF7-8D62-0A35F3016E0B";
-				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "4ABCE37F-6173-4B19-8713-14864CC8C6A5";
+				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E78A914-BBB5-4AF7-8D62-0A35F3016E0B";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
-				VALID_ARCHS = "armv7 armv7s i386";
+				VALID_ARCHS = "armv7 i386";
 			};
 			name = Debug;
 		};
@@ -661,7 +665,7 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = 1;
 				VALIDATE_PRODUCT = YES;
-				VALID_ARCHS = "armv7 armv7s i386";
+				VALID_ARCHS = "armv7 i386";
 			};
 			name = Release;
 		};
@@ -685,7 +689,7 @@
 				"PROVISIONING_PROFILE[sdk=iphoneos*]" = "3E78A914-BBB5-4AF7-8D62-0A35F3016E0B";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "armv7 armv7s i386";
+				VALID_ARCHS = "armv7 i386";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Debug;
@@ -708,7 +712,7 @@
 				PROVISIONING_PROFILE = "";
 				TARGETED_DEVICE_FAMILY = 1;
 				USER_HEADER_SEARCH_PATHS = "";
-				VALID_ARCHS = "armv7 armv7s i386";
+				VALID_ARCHS = "armv7 i386";
 				WRAPPER_EXTENSION = app;
 			};
 			name = Release;

@@ -64,8 +64,10 @@
     origin = [track objectForKey:@"origin"];
     //Set background colour of waveform to that of SoundClouds, taken from website
     [cell.waveForm setBackgroundColor:[UIColor colorWithHexString:@"#ff6600"]];
-    [cell.waveForm displayPlaceHolderImage:[UIImage imageNamed:@"placeHolder.png"] FromURLString:[origin objectForKey:@"waveform_url"]];
     
+    //set the waveform image in the table cell to that stored in the array
+    [cell.waveForm  displayPlaceHolderImage:[UIImage imageNamed:@"placeHolder.png"] FromURLString:[origin objectForKey:@"waveform_url"]];
+
     //set colour and text of font to that of SoundClouds, taken from website
     [cell.title setFont:[UIFont fontWithName:@"LucidaGrande-Bold" size:10]];
     cell.title.textColor = [UIColor colorWithHexString:@"#0066cc"];
