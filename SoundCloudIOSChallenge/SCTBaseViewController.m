@@ -45,11 +45,6 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated{
-    
-//    [[NSNotificationCenter defaultCenter] addObserver:self
-//                                             selector:@selector(imageDownloaded:)
-//                                                 name:@"waveformdownloaded"
-//                                               object:nil];
 
     
     if(!_waveformImages)
@@ -95,18 +90,6 @@
     
 }
 
-#pragma mark - Image downloaded notification
-//- (void) imageDownloaded:(NSNotification *) notification
-//{
-//    // [notification name] should always be @"TestNotification"
-//    // unless you use this method for observation of other notifications
-//    // as well.
-//    
-//    //NSDictionary *dict = notification.userInfo;
-//    UIImage *imageDownloaded = [notification.userInfo objectForKey:@"image"];
-//    [_waveformImages addObject:imageDownloaded];
-//}
-
 #pragma mark - Table view data source
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath
@@ -143,16 +126,19 @@
 -(void)launchRemoteUrlForTrack:(NSDictionary*)track
 {
     //get track id
-    NSString *trackID = [NSString stringWithFormat:@"%i",[[track objectForKey:@"id"]intValue]];
+    //NSString *trackID = [NSString stringWithFormat:@"%i",[[track objectForKey:@"id"]intValue]];
+    
     NSLog(@"%i",[[track objectForKey:@"id"]intValue]);
     //get url link
     NSString *permaLink = [track objectForKey:@"permalink_url"];
 
-    NSString* params = @"tracks:64856340";
+    NSString* params = @"tracks:";
     //append params with track id
-    //[params stringByAppendingString:trackID];
+    params = [NSString stringWithFormat:@"%@%i",params,[[track objectForKey:@"id"]intValue]];
+//    [params stringByAppendingString:trackID];
 
-    NSString* URI = @"soundcloud://"; // Text sent through url.
+    NSString* URI = @"soundcloud:"; // Text sent through url.
+    //NSString* URI = @"soundcloud:";
 
     UIApplication *ourApplication = [UIApplication sharedApplication];
     NSString *URLEncodedText = [params stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding];
@@ -200,15 +186,6 @@
  @param arrayOfCollections An array of collection objects from the JSON feed
  */
 - (void)tracksReceived:(NSArray *)arrayOfCollections{
-    
-    //put all the waveform images into an array so can be loaded into the table
-//    for(NSDictionary *track in arrayOfCollections)
-//    {
-//        origin = [track objectForKey:@"origin"];
-//        UIImageView *currentWaveForm = [[UIImageView alloc]init];
-//        [currentWaveForm displayPlaceHolderImage:[UIImage imageNamed:@"placeHolder.png"] FromURLString:[origin objectForKey:@"waveform_url"]];
-//        [_waveformImages addObject:currentWaveForm.image];
-//    }
     
     //populate _tracks with data
     self.tracks = [[NSArray alloc]initWithArray:arrayOfCollections];
